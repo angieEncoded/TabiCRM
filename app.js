@@ -3,15 +3,23 @@ const express = require('express');
 const User = require('./models/User');
 const cors = require('cors');
 const logger = require('./util/logger');
-
-
 const app = express();
+
+
+
 
 
 app.use(cors({
     origin: "http://localhost:3000"
 }))
 
+// Set up the folder where react will live
+app.use(express.static('client'));
+
+//The default endpoint for the webserver
+app.get("/", (req, res) => {
+    res.render('index.html');
+});
 
 
 
